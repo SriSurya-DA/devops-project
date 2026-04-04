@@ -39,11 +39,9 @@ jobs:
 
       - name: Deploy
         run: |
-          kubectl config view
-          kubectl config set-cluster kubernetes --insecure-skip-tls-verify=true --certificate-authority=
-          kubectl config set-context --current --cluster=kubernetes
-          kubectl apply -f k8s/deployment.yaml --validate=false
-          kubectl apply -f k8s/service.yaml
+          export KUBECONFIG=~/.kube/config
+          kubectl apply -f k8s/deployment.yaml --validate=false --insecure-skip-tls-verify=true
+          kubectl apply -f k8s/service.yaml --insecure-skip-tls-verify=true
 
       - name: Slack Alert
         if: failure()

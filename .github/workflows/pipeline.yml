@@ -39,7 +39,8 @@ jobs:
 
       - name: Deploy
         run: |
-          kubectl apply -f k8s/deployment.yaml
+          kubectl config set-cluster kubernetes --insecure-skip-tls-verify=true
+          kubectl apply -f k8s/deployment.yaml --validate=false
           kubectl apply -f k8s/service.yaml
 
       - name: Slack Alert

@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "devops" {
-  ami           = "ami-0f58b397bc5c1f2e8"
+  ami           = "ami-0c02fb55956c7d316"
   instance_type = "t2.medium"
 
   security_groups = [aws_security_group.sg.name]
